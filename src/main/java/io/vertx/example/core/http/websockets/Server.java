@@ -13,6 +13,10 @@ public class Server extends AbstractVerticle {
 
   // Convenience method so you can run it in your IDE
   public static void main(String[] args) {
+	System.out.println("args: " + args);
+	if(args != null && args.length > 0)
+		System.getProperties().setProperty("PORT", args[0]);
+	
     Runner.runExample(Server.class);
   }
 
@@ -20,7 +24,7 @@ public class Server extends AbstractVerticle {
   public void start() throws Exception {
 	int port = 4891;
 	try {
-		Integer.valueOf(System.getenv("PORT"));
+		port = Integer.valueOf(System.getenv("PORT"));
 		System.out.println("getenv PORT: " + port);
 	} catch (Exception e) {
 		System.out.println("cannot get getenv PORT, use default port: " + port);
