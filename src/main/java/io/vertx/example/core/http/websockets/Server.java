@@ -17,11 +17,21 @@ public class Server extends AbstractVerticle {
 
   @Override
   public void start() throws Exception {
+	int port = 8080;
+	try {
+		Integer.valueOf(System.getenv("PORT"));
+	} catch (Exception e) {
+		System.out.println("cannot get getenv PORT, use default port: " + port);
+	}
+	
+	System.out.println("start listening port: " + port);
+	
     vertx.createHttpServer().websocketHandler(ws -> ws.handler(ws::writeBinaryMessage)).requestHandler(req -> {
     	System.out.println(req.uri());
     	System.out.println(System.getProperties().getProperty("user.dir"));
     	
     	if (req.uri().equals("/")) req.response().sendFile(System.getProperties().getProperty("user.dir") + File.separatorChar + "ws.html");
-    }).listen(8080);
+    }).listen(port);
+    
   }
 }
