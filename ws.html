@@ -20,7 +20,9 @@
 <script>
     var socket;
     if (window.WebSocket) {
-        socket = new WebSocket("ws://localhost:8080/myapp");
+        //socket = new WebSocket("ws://localhost:8080/myapp");
+        socket = new WebSocket("ws://gettingstart.herokuapp.com");
+            
         socket.onmessage = function (event) {
             alert("Received data from websocket: " + event.data);
         }
