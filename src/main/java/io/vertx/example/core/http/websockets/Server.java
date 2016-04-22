@@ -30,14 +30,16 @@ public class Server extends AbstractVerticle {
 		vertx = Vertx.vertx();
 	}
 	
-	System.out.println("start listening port: " + port);
+	System.out.println("start listening on port: " + port);
 	
 	vertx.createHttpServer().websocketHandler(ws -> ws.handler(ws::writeBinaryMessage)).requestHandler(req -> {
 		System.out.println("request: " + req.uri());
 		
 		if (req.uri().equals("/"))
 			req.response().sendFile("ws.html");
-	}).listen(port);
+	}).listen(port, "0.0.0.0");
+	
+	System.out.println("started listening on port: " + port);
 	
 //    vertx.createHttpServer().websocketHandler(ws -> ws.handler(ws::writeBinaryMessage)).requestHandler(req -> {
 //    	System.out.println(req.uri());
