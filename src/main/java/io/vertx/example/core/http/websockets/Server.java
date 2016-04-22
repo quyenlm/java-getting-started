@@ -18,7 +18,7 @@ public class Server extends AbstractVerticle {
 
   @Override
   public void start() throws Exception {
-	int port = 8080;
+	int port = 4891;
 	try {
 		Integer.valueOf(System.getenv("PORT"));
 		System.out.println("getenv PORT: " + port);
