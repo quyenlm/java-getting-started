@@ -25,9 +25,14 @@ public class Server extends AbstractVerticle {
 		System.out.println("cannot get getenv PORT, use default port: " + port);
 	}
 	
+	if(vertx == null) {
+		System.out.println("init vertx context...");
+		vertx = Vertx.vertx();
+	}
+	
 	System.out.println("start listening port: " + port);
 	
-	Vertx.vertx().createHttpServer().websocketHandler(ws -> ws.handler(ws::writeBinaryMessage)).requestHandler(req -> {
+	vertx.createHttpServer().websocketHandler(ws -> ws.handler(ws::writeBinaryMessage)).requestHandler(req -> {
 		System.out.println("request: " + req.uri());
 		
 		if (req.uri().equals("/"))
