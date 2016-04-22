@@ -21,6 +21,7 @@ public class Server extends AbstractVerticle {
 	int port = 8080;
 	try {
 		Integer.valueOf(System.getenv("PORT"));
+		System.out.println("getenv PORT: " + port);
 	} catch (Exception e) {
 		System.out.println("cannot get getenv PORT, use default port: " + port);
 	}
@@ -32,21 +33,21 @@ public class Server extends AbstractVerticle {
 	
 	System.out.println("start listening on port: " + port);
 	
-	vertx.createHttpServer().websocketHandler(ws -> ws.handler(ws::writeBinaryMessage)).requestHandler(req -> {
-		System.out.println("request: " + req.uri());
-		
-		if (req.uri().equals("/"))
-			req.response().sendFile("ws.html");
-	}).listen(port, "0.0.0.0");
+//	vertx.createHttpServer().websocketHandler(ws -> ws.handler(ws::writeBinaryMessage)).requestHandler(req -> {
+//		System.out.println("request: " + req.uri());
+//		
+//		if (req.uri().equals("/"))
+//			req.response().sendFile("ws.html");
+//	}).listen(port, "0.0.0.0");
 	
-	System.out.println("started listening on port: " + port);
-	
-//    vertx.createHttpServer().websocketHandler(ws -> ws.handler(ws::writeBinaryMessage)).requestHandler(req -> {
-//    	System.out.println(req.uri());
-//    	System.out.println(System.getProperties().getProperty("user.dir"));
-//    	
-//    	if (req.uri().equals("/")) req.response().sendFile(System.getProperties().getProperty("user.dir") + File.separatorChar + "ws.html");
-//    }).listen(port);
+    vertx.createHttpServer().websocketHandler(ws -> ws.handler(ws::writeBinaryMessage)).requestHandler(req -> {
+    	System.out.println("request: " + req.uri());
+    	System.out.println("user.dir: " + System.getProperties().getProperty("user.dir"));
+    	
+    	if (req.uri().equals("/")) req.response().sendFile(System.getProperties().getProperty("user.dir") + File.separatorChar + "ws.html");
+//    	if (req.uri().equals("/")) req.response().sendFile("ws.html");
+    }).listen(port, "0.0.0.0");
     
+    System.out.println("started listening on port: " + port);
   }
 }
