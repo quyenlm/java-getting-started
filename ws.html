@@ -20,11 +20,11 @@
 <script>
     var socket;
     if (window.WebSocket) {
-        //socket = new WebSocket("ws://localhost:8080/myapp");
-        socket = new WebSocket("ws://gettingstart.herokuapp.com");
+        socket = new WebSocket("ws://localhost:8080/myapp");
+        //socket = new WebSocket("ws://gettingstart.herokuapp.com");
             
         socket.onmessage = function (event) {
-            alert("Received data from websocket: " + event.data);
+        	document.getElementById('receiveBox').value = event.data;
         }
         socket.onopen = function (event) {
             alert("Web Socket opened!");
@@ -48,7 +48,8 @@
     }
 </script>
 <form onsubmit="return false;">
-    <input type="text" name="message" value="Hello, World!"/>
+    <input type="text" name="receiveBox" id="receiveBox" value=""/> <br/>
+    <input type="text" name="message" value="Hello, World!"/> 
     <input type="button" value="Send Web Socket Data" onclick="send(this.form.message.value)"/>
 </form>
 </body>

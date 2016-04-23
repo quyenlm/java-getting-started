@@ -10,6 +10,7 @@
 		<!-- the main class -->
 		<!-- <exec.mainClass>io.vertx.example.HelloWorldEmbedded</exec.mainClass> -->
 		<exec.mainClass>io.vertx.example.core.http.websockets.Server</exec.mainClass>
+		<netty.version>4.0.31.Final</netty.version>
 	</properties>
 	
 	<dependencies>
@@ -40,6 +41,14 @@
 			<artifactId>heroku-jdbc</artifactId>
 			<version>0.1.1</version>
 		</dependency>
+		
+		<!-- START utils component -->
+		<dependency>
+			<groupId>io.netty</groupId>
+			<artifactId>netty-all</artifactId>
+			<version>${netty.version}</version>
+		</dependency>
+
 	</dependencies>
 	<build>
 		<plugins>

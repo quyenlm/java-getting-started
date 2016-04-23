@@ -1,1 +1,1 @@
-web:    java -cp target/classes:target/dependency/* io.vertx.example.core.http.websockets.Server -p $PORT
+web:    java -cp target/classes:target/dependency/* com.vertx.demo.startup.Startup -p $PORT

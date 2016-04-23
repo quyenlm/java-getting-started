@@ -10,9 +10,10 @@ import io.vertx.example.util.Runner;
  * @author <a href="http://tfox.org">Tim Fox</a>
  */
 public class Client extends AbstractVerticle {
+//	String host = "localhost";
 	String host = "gettingstart.herokuapp.com";
-	String uri = "/";
-	int port = 8080;
+	String uri = "";
+	int port = 51295;
 	
 	// Convenience method so you can run it in your IDE
 	public static void main(String[] args) {

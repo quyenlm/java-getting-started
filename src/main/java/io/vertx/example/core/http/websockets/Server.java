@@ -11,10 +11,10 @@ import io.vertx.example.util.Runner;
  */
 public class Server extends AbstractVerticle {
 
-	// Convenience method so you can run it in your IDE
-	public static void main(String[] args) {
-		Runner.runExample(Server.class);
-	}
+//	// Convenience method so you can run it in your IDE
+//	public static void main(String[] args) {
+//		Runner.runExample(Server.class);
+//	}
 
 	@Override
 	public void start() throws Exception {
@@ -33,15 +33,18 @@ public class Server extends AbstractVerticle {
 
 		System.out.println("start listening on port: " + port);
 
+		MyHandler myHandler = new MyHandler();
+		
 		vertx.createHttpServer()
 				.websocketHandler(ws -> ws.handler(ws::writeBinaryMessage))
+//				.websocketHandler(ws -> ws.handler(myHandler))
 				.requestHandler(
 						req -> {
 							System.out.println("request: " + req.uri());
 							System.out.println("user.dir: " + System.getProperties().getProperty("user.dir"));
 
 							if (req.uri().equals("/"))
-								req.response().sendFile(System.getProperties().getProperty("user.dir") + File.separatorChar + "ws.html");
+								req.response().sendFile(System.getProperties().getProperty("user.dir") + File.separatorChar + "ws.html");							
 						}).listen(port, "0.0.0.0");
 
 		System.out.println("started listening on port: " + port);
