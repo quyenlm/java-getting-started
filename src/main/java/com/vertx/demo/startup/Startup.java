@@ -5,7 +5,7 @@ import io.vertx.example.util.Runner;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-import com.pokersu.server.PokerServer;
+import com.pokersu.server.JokerServer;
 import com.pokersu.server.Server;
 
 public class Startup {
@@ -23,7 +23,7 @@ public class Startup {
 //		Runner.runExample(Server.class);
     	
     	try {
-    		final Server pokerServer = new PokerServer();
+    		final Server pokerServer = new JokerServer();
     		pokerServer.setPort(port);
     		executorService.submit(pokerServer);
 		} catch (Exception e) {

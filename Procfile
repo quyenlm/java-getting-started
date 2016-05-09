@@ -1,1 +1,1 @@
-web: java -jar lib/poker-server.jar -p $PORT
+web: java -jar lib/joker-server.jar -p $PORT
